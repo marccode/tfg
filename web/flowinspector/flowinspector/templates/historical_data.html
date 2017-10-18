@@ -1,0 +1,33 @@
+{% extends "dashboard2.html" %}
+{% block graph %}
+
+<div class="container-fluid">
+	<div class="row">
+	
+		<div id="historical-bytes-place" class="col-lg-6" style="height:500px">
+			<div id="historical-bytes" style="width: 100%;height: 100%">
+				<script src="../static/js/historical_bytes_script.js"></script>
+			</div>
+		</div>
+	
+		<div id="historical-traces-place" class="col-lg-6" style="height:500px">
+			<div id="historical-traces" style="width: 100%;height: 100%">
+				<script src="../static/js/historical_traces_script.js"></script>
+			</div>
+		</div>
+
+		
+	
+	</div>
+
+</div>
+
+<!-- Resize -->
+<script>
+    window.onresize = function () {
+        myChart.resize();
+        myChart_bytes.resize();
+    };
+</script>
+
+{% endblock %}

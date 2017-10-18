@@ -1,0 +1,1267 @@
+<!DOCTYPE html>
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+</head>
+<body>
+    <!-- BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+    <div id="main" style="height:600px"></div>
+    <!-- ECharts单文件引入 -->
+    <script src="http://echarts.baidu.com/build/dist/echarts.js"></script>
+    <script type="text/javascript">
+        // 路径配置
+        require.config({
+            paths: {
+                echarts: 'http://echarts.baidu.com/build/dist'
+            }
+        });
+        
+        // 使用
+        require(
+            [
+                'echarts',
+                'echarts/chart/bar',
+                'echarts/chart/line' // 使用柱状图就加载bar模块，按需加载
+            ],
+            function (ec) {
+                // 基于准备好的dom，初始化echarts图表
+
+                var myChart = ec.init(document.getElementById('main')); 
+                
+                option = {
+                    title : {
+                        text: 'Real Time Traffic',
+                        //subtext: 'Traffic classified in real time'
+                        x: 'center'
+                    },
+                    tooltip : {
+                        trigger: 'axis'
+                    },
+                    legend: {
+                        //type: 'scroll',
+                        orient: 'vertical',
+                        right: 10,
+                        top: 250,
+                        bottom: 20,
+                        backgroundColor: 'rgba(175,175,175,100)',
+                        borderColor: '#ccc',
+                        borderWidth: 3,
+                        x:'right',
+                        y:'center',
+                        data:['aim', 'ares', 'armagetron', 'battlefield2', 'battlefield2142', 'bittorrent', 'counterstrike-source', 'dhcp', 'dns', 'edonkey', 'freenet', 'ftp', 'gnutella', 'h323', 'http', 'httpaudio', 'httpcachehit', 'httpcachemiss', 'http-itunes', 'httpvideo', 'ident', 'imap', 'irc', 'jabber', 'kugoo', 'lpd', 'mohaa', 'msnmessenger', 'nbns', 'nntp', 'ntp', 'pop3', 'pressplay', 'qq', 'quake-halflife', 'radmin', 'rlogin', 'rtp', 'rtsp', 'shoutcast', 'sip', 'skypeout', 'skypetoskype', 'smb', 'smtp', 'socks', 'soulseek', 'ssh', 'ssl', 'stun', 'subversion', 'teamfortress2', 'telnet', 'validcertssl', 'ventrilo', 'vnc', 'whois', 'worldofwarcraft', 'x11', 'xboxlive', 'yahoo']
+                    },
+                    toolbox: {
+                        show : true,
+                        feature : {
+                            mark : {show: true},
+                            dataView : {show: true, readOnly: false},
+                            magicType : {show: true, type: ['line', 'bar']},
+                            restore : {show: true},
+                            saveAsImage : {show: true}
+                        }
+                    },
+                    dataZoom : {
+                        show : false,
+                        start : 0,
+                        end : 100
+                    },
+                    xAxis : [
+                        {
+                            type : 'value',
+                            data: []
+                            //boundaryGap : true,
+                        }
+                    ],
+                    yAxis : [
+                        {
+                            type : 'value',
+                            scale: true,
+                            name : 'Barra Dreta',
+                            boundaryGap: [0.2, 0.2],
+                            data : [0,10,20,30,40,50,60,70,80,90,100]
+                        }
+                    ],
+                    series : [
+                        {
+                            name:'aim',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ares',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'armagetron',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'battlefield2',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'battlefield2142',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'bittorrent',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'counterstrike-source',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'dhcp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'dns',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'edonkey',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'freenet',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ftp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'gnutella',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'h323',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'http',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'httpaudio',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'httpcachehit',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'httpcachemiss',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'http-itunes',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'httpvideo',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ident',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'imap',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'irc',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'jabber',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'kugoo',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'lpd',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'mohaa',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'msnmessenger',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'nbns',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'nntp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ntp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'pop3',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'pressplay',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'qq',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'quake-halflife',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'radmin',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'rlogin',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'rtp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'rtsp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'shoutcast',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'sip',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'skypeout',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'skypetoskype',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'smb',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'smtp',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'socks',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'soulseek',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ssh',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ssl',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'stun',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'subversion',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'teamfortress2',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'telnet',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'validcertssl',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'ventrilo',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'vnc',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'whois',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'worldofwarcraft',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'x11',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'xboxlive',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        },
+                        {
+                            name:'yahoo',
+                            type:'line',
+                            xAxisIndex: 0,
+                            yAxisIndex: 0,
+                            data:[0,0,0,0,0,0,0,0,0,0]
+                        }
+                    ]
+                };
+        
+                // 为echarts对象加载数据 
+                myChart.setOption(option);
+                var lastData = 11;
+                
+                setInterval(function (){
+
+                    var data_file = "http://127.0.0.1:5000/getCurrentData";
+                    var http_request = new XMLHttpRequest();
+                    try{
+                       // Opera 8.0+, Firefox, Chrome, Safari
+                       http_request = new XMLHttpRequest();
+                    }catch (e){
+                       // Internet Explorer Browsers
+                       try{
+                          http_request = new ActiveXObject("Msxml2.XMLHTTP");
+                            
+                       }catch (e) {
+                        
+                          try{
+                             http_request = new ActiveXObject("Microsoft.XMLHTTP");
+                          }catch (e){
+                             // Something went wrong
+                             alert("Your browser broke!");
+                             return false;
+                          }
+                            
+                       }
+                    }
+            
+                    http_request.onreadystatechange = function() {
+                    
+                        if (http_request.readyState == 4  ) {
+                          // Javascript function JSON.parse to parse JSON data
+                          var resp_text = http_request.responseText;
+                          //alert(resp_text);
+                          //var new_json = JSON.stringify(resp_text).replace(/-/g, '_'); //convert to JSON string
+                          //alert(new_json);
+                          jsonObj = JSON.parse(resp_text);
+
+                          var axisData =  jsonObj.time;
+
+                          // jsonObj variable now contains the data structure and can
+                          // be accessed as jsonObj.name and jsonObj.country.
+                          //alert(old);
+
+                          /*
+                          myChart.addData([
+                            [
+                                0,        // 系列索引
+                                jsonObj.aim,
+                                false,     // sentit d'actualització: false -> noves dades a la dreta
+                                axisData     // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                            ],
+                            [
+                                1,        // 系列索引
+                                jsonObj.ares, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                2,        // 系列索引
+                                jsonObj.armagetron, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                3,        // 系列索引
+                                jsonObj.battlefield2, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                4,        // 系列索引
+                                jsonObj.battlefield2142, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                5,        // 系列索引
+                                jsonObj.bittorrent, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                6,        // 系列索引
+                                jsonObj["counterstrike-source"], // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                7,        // 系列索引
+                                jsonObj.dhcp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                8,        // 系列索引
+                                jsonObj.dns, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                9,        // 系列索引
+                                jsonObj.edonkey, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                10,        // 系列索引
+                                jsonObj.freenet, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                11,        // 系列索引
+                                jsonObj.ftp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                12,        // 系列索引
+                                jsonObj.gnutella, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                13,        // 系列索引
+                                jsonObj.h323, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                14,        // 系列索引
+                                jsonObj.http, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                15,        // 系列索引
+                                jsonObj.httpaudio, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                16,        // 系列索引
+                                jsonObj.httpcachehit, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                17,        // 系列索引
+                                jsonObj.httpcachemiss, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                18,        // 系列索引
+                                jsonObj["http-itunes"], // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                19,        // 系列索引
+                                jsonObj.httpvideo, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                20,        // 系列索引
+                                jsonObj.ident, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                21,        // 系列索引
+                                jsonObj.imap, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                22,        // 系列索引
+                                jsonObj.irc, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                23,        // 系列索引
+                                jsonObj.jabber, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                24,        // 系列索引
+                                jsonObj.kugoo, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                25,        // 系列索引
+                                jsonObj.lpd, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                26,        // 系列索引
+                                jsonObj.mohaa, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                27,        // 系列索引
+                                jsonObj.msnmessenger, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                28,        // 系列索引
+                                jsonObj.nbns, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                29,        // 系列索引
+                                jsonObj.nntp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                30,        // 系列索引
+                                jsonObj.ntp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                31,        // 系列索引
+                                jsonObj.pop3, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                32,        // 系列索引
+                                jsonObj.pressplay, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                33,        // 系列索引
+                                jsonObj.qq, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                34,        // 系列索引
+                                jsonObj["quake-halflife"], // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                35,        // 系列索引
+                                jsonObj.radmin, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                36,        // 系列索引
+                                jsonObj.rlogin, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                37,        // 系列索引
+                                jsonObj.rtp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                38,        // 系列索引
+                                jsonObj.rtsp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                39,        // 系列索引
+                                jsonObj.shoutcast, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                40,        // 系列索引
+                                jsonObj.sip, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                41,        // 系列索引
+                                jsonObj.skypeout, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                42,        // 系列索引
+                                jsonObj.skypetoskype, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                43,        // 系列索引
+                                jsonObj.smb, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                44,        // 系列索引
+                                jsonObj.smtp, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                45,        // 系列索引
+                                jsonObj.socks, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                46,        // 系列索引
+                                jsonObj.soulseek, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                47,        // 系列索引
+                                jsonObj.ssh, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                48,        // 系列索引
+                                jsonObj.ssl, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                49,        // 系列索引
+                                jsonObj.stun, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                50,        // 系列索引
+                                jsonObj.subversion, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                51,        // 系列索引
+                                jsonObj.teamfortress2, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                52,        // 系列索引
+                                jsonObj.telnet, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                53,        // 系列索引
+                                jsonObj.validcertssl, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                54,        // 系列索引
+                                jsonObj.ventrilo, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                55,        // 系列索引
+                                jsonObj.vnc, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                56,        // 系列索引
+                                jsonObj.whois, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                57,        // 系列索引
+                                jsonObj.worldofwarcraft, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                58,        // 系列索引
+                                jsonObj.x11, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                59,        // 系列索引
+                                jsonObj.xboxlive, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ],
+                            [
+                                60,        // 系列索引
+                                jsonObj.yahoo, // 新增数据
+                                false,    // 新增数据是否从队列头部插入
+                                false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+                                axisData  // 坐标轴标签
+                            ];
+
+                            
+                        ]);*/
+
+                        times.shift();
+                        times.push(jsonObj.time);
+
+                        myChart.setOption({
+                            xAxis: {
+                                data: times
+                            },
+                            series: [
+                            {
+                            name:'aim',
+                            data:jsonObj.aim
+                        },
+                        {
+                            name:'ares',
+                            data:jsonObj.ares
+                        },
+                        {
+                            name:'armagetron',
+                            data:jsonObj.armagetron
+                        },
+                        {
+                            name:'battlefield2',
+                            data:jsonObj.battlefield2
+                        },
+                        {
+                            name:'battlefield2142',
+                            data:jsonObj.battlefield2142
+                        },
+                        {
+                            name:'bittorrent',
+                            data:jsonObj.bittorrent
+                        },
+                        {
+                            name:'counterstrike-source',
+                            data:jsonObj["counterstrike-source"]
+                        },
+                        {
+                            name:'dhcp',
+                            data:jsonObj.dhcp
+                        },
+                        {
+                            name:'dns',
+                            data:jsonObj.dns
+                        },
+                        {
+                            name:'edonkey',
+                            data:jsonObj.edonkey
+                        },
+                        {
+                            name:'freenet',
+                            data:jsonObj.freenet
+                        },
+                        {
+                            name:'ftp',
+                            data:jsonObj.ftp
+                        },
+                        {
+                            name:'gnutella',
+                            data:jsonObj.gnutella
+                        },
+                        {
+                            name:'h323',
+                            data:jsonObj.h323
+                        },
+                        {
+                            name:'http',
+                            data:jsonObj.http
+                        },
+                        {
+                            name:'httpaudio',
+                            data:jsonObj.httpaudio
+                        },
+                        {
+                            name:'httpcachehit',
+                            data:jsonObj.httpcachehit
+                        },
+                        {
+                            name:'httpcachemiss',
+                            data:jsonObj.httpcachemiss
+                        },
+                        {
+                            name:'http-itunes',
+                            data:jsonObj["http-itunes"]
+                        },
+                        {
+                            name:'httpvideo',
+                            data:jsonObj.httpvideo
+                        },
+                        {
+                            name:'ident',
+                            data:jsonObj.ident
+                        },
+                        {
+                            name:'imap',
+                            data:jsonObj.imap
+                        },
+                        {
+                            name:'irc',
+                            data:jsonObj.irc
+                        },
+                        {
+                            name:'jabber',
+                            data:jsonObj.jabber
+                        },
+                        {
+                            name:'kugoo',
+                            data:jsonObj.kugoo
+                        },
+                        {
+                            name:'lpd',
+                            data:jsonObj.lpd
+                        },
+                        {
+                            name:'mohaa',
+                            data:jsonObj.mohaa
+                        },
+                        {
+                            name:'msnmessenger',
+                            data:jsonObj.msnmessenger
+                        },
+                        {
+                            name:'nbns',
+                            data:jsonObj.nbns
+                        },
+                        {
+                            name:'nntp',
+                            data:jsonObj.nntp
+                        },
+                        {
+                            name:'ntp',
+                            data:jsonObj.ntp
+                        },
+                        {
+                            name:'pop3',
+                            data:jsonObj.pop3
+                        },
+                        {
+                            name:'pressplay',
+                            data:jsonObj.pressplay
+                        },
+                        {
+                            name:'qq',
+                            data:jsonObj.qq
+                        },
+                        {
+                            name:'quake-halflife',
+                            data:jsonObj["quake-halflife"]
+                        },
+                        {
+                            name:'radmin',
+                            data:jsonObj.radmin
+                        },
+                        {
+                            name:'rlogin',
+                            data:jsonObj.rlogin
+                        },
+                        {
+                            name:'rtp',
+                            data:jsonObj.rtp
+                        },
+                        {
+                            name:'rtsp',
+                            data:jsonObj.rtsp
+                        },
+                        {
+                            name:'shoutcast',
+                            data:jsonObj.shoutcast
+                        },
+                        {
+                            name:'sip',
+                            data:jsonObj.sip
+                        },
+                        {
+                            name:'skypeout',
+                            data:jsonObj.skypeout
+                        },
+                        {
+                            name:'skypetoskype',
+                            data:jsonObj.skypetoskype
+                        },
+                        {
+                            name:'smb',
+                            data:jsonObj.smb
+                        },
+                        {
+                            name:'smtp',
+                            data:jsonObj.smtp
+                        },
+                        {
+                            name:'socks',
+                            data:jsonObj.socks
+                        },
+                        {
+                            name:'soulseek',
+                            data:jsonObj.soulseek
+                        },
+                        {
+                            name:'ssh',
+                            data:jsonObj.ssh
+                        },
+                        {
+                            name:'ssl',
+                            data:jsonObj.ssl
+                        },
+                        {
+                            name:'stun',
+                            data:jsonObj.stun
+                        },
+                        {
+                            name:'subversion',
+                            data:jsonObj.subversion
+                        },
+                        {
+                            name:'teamfortress2',
+                            data:jsonObj.teamfortress2
+                        },
+                        {
+                            name:'telnet',
+                            data:jsonObj.telnet
+                        },
+                        {
+                            name:'validcertssl',
+                            data:jsonObj.validcertssl
+                        },
+                        {
+                            name:'ventrilo',
+                            data:jsonObj.ventrilo
+                        },
+                        {
+                            name:'vnc',
+                            data:jsonObj.vnc
+                        },
+                        {
+                            name:'whois',
+                            data:jsonObj.whois
+                        },
+                        {
+                            name:'worldofwarcraft',
+                            data:jsonObj.worldofwarcraft
+                        },
+                        {
+                            name:'x11',
+                            data:jsonObj.x11
+                        },
+                        {
+                            name:'xboxlive',
+                            data:jsonObj.xboxlive
+                        },
+                        {
+                            name:'yahoo',
+                            data:jsonObj.yahoo
+                        }
+                            ]
+                        });
+                       }
+                    }
+                    
+                    http_request.open("GET", data_file, true);
+                    http_request.send();
+
+
+                    //lastdata += Math.random() * ((Math.round(Math.random() * 10) % 2) == 0 ? 1 : -1);
+                    //lastdata = lastdata.toFixed(1) - 0;
+                    //axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+                    
+                    // 动态数据接口 addData
+                    
+                }, 5000);
+                //clearInterval(timeTicket);
+            }
+        );
+    </script>
+</body>

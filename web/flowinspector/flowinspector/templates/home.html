@@ -1,0 +1,122 @@
+option = {
+    title : {
+        text: '动态数据',
+        subtext: '纯属虚构'
+    },
+    tooltip : {
+        trigger: 'axis'
+    },
+    legend: {
+        data:['DadesBlaves', 'DadesTaronges']
+    },
+    toolbox: {
+        show : true,
+        feature : {
+            mark : {show: true},
+            dataView : {show: true, readOnly: false},
+            magicType : {show: true, type: ['line', 'bar']},
+            restore : {show: true},
+            saveAsImage : {show: true}
+        }
+    },
+    dataZoom : {
+        show : true,
+        start : 0,
+        end : 100
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : true,
+            data : (function (){
+                var now = new Date();
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.unshift(now.toLocaleTimeString().replace(/^\D*/,''));
+                    now = new Date(now - 2000);
+                }
+                return res;
+            })()
+        },
+        {
+            type : 'category',
+            boundaryGap : true,
+            data : (function (){
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push(len + 1);
+                }
+                return res;
+            })()
+        }
+    ],
+    yAxis : [
+        {
+            type : 'value',
+            scale: false,
+            name : 'Barra Esquerra',
+            boundaryGap: [0.2, 0.2]
+        },
+        {
+            type : 'value',
+            scale: false,
+            name : 'Barra Dreta',
+            boundaryGap: [0.2, 0.2]
+        }
+    ],
+    series : [
+        {
+            name:'DadesBlaves',
+            type:'line',
+            xAxisIndex: 1,
+            yAxisIndex: 1,
+            data:(function (){
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push(Math.round(Math.random() * 1000));
+                }
+                return res;
+            })()
+        },
+        {
+            name:'DadesTaronges',
+            type:'line',
+            data:(function (){
+                var res = [];
+                var len = 10;
+                while (len--) {
+                    res.push((Math.random()*10 + 5).toFixed(1) - 0);
+                }
+                return res;
+            })()
+        }
+    ]
+};
+var lastData = 11;
+var axisData;
+clearInterval(timeTicket);
+timeTicket = setInterval(function (){
+    lastData += Math.random() * ((Math.round(Math.random() * 10) % 2) == 0 ? 1 : -1);
+    lastData = lastData.toFixed(1) - 0;
+    axisData = (new Date()).toLocaleTimeString().replace(/^\D*/,'');
+    
+    // 动态数据接口 addData
+    myChart.addData([
+        [
+            0,        // 系列索引
+            Math.round(Math.random() * 1000), // 新增数据
+            false,     // sentit d'actualització: false -> noves dades a la dreta
+            false     // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+        ],
+        [
+            1,        // 系列索引
+            lastData, // 新增数据
+            false,    // sentit d'actualització: false -> noves dades a la dreta
+            false,    // 是否增加队列长度，false则自定删除原有数据，队头插入删队尾，队尾插入删队头
+            axisData  // 坐标轴标签
+        ]
+    ]);
+}, 2100);

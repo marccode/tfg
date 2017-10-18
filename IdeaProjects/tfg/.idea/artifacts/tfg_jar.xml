@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="tfg:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/tfg_jar</output-path>
+    <root id="archive" name="tfg.jar">
+      <element id="library" level="project" name="Maven: org.mariadb.jdbc:mariadb-java-client:2.1.1" />
+      <element id="module-output" name="tfg" />
+    </root>
+  </artifact>
+</component>
